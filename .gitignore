@@ -1,0 +1,18 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.runtime/
+# Only root-level experiment data; package data must remain versioned.
+/data/
+/subjects/*
+!/subjects/_DEFAULT_/
+!/subjects/README.md
+build/
+dist/
+docs/source-baseline.json
+docs/qa
+cache/
+assets/object-images/*.npy
+optional-libs/
+tmp/

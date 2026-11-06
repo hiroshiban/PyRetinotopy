@@ -1,0 +1,30 @@
+{
+  "source_url": "https://github.com/hiroshiban/Retinotopy#acknowledgments",
+  "source_section": "About the original retinotopy stimulus codes",
+  "checked_date": "2026-11-06",
+  "source_paragraph_sha256": "4ff64e0e29afdd049d85df261c069422dc9104a6574177ab289b9d3692a37345",
+  "japanese_translation": [
+    "PyRetinotopyとその前身であるRetinotopyは、私が英国のUniversity of Birminghamに在籍し、Andrew Welchman博士およびZoe Kourtzi博士の指導の下で開発・使用していたレチノトピー刺激に、さまざまな改変を加えた一連のプログラムをもとにしています。ここに、お二人のご支援に深く感謝いたします。",
+    "これらの刺激の基礎となったのは、京都大学のHiroki Yamamoto博士とYoshimichi Ejima博士が、C/C++およびVisualization Toolkit（VTK、Kitware Inc.）ライブラリを用いて開発されたコードです。これらのコードはSolaris/IRIXのワークステーションで動作していました。私はお二人から、視覚刺激の作り方について多くを学びました。",
+    "これらの元の刺激をMATLABとPsychtoolboxで全面的に改変・更新し、長年にわたって新たな機能や刺激の種類を追加してきたものが、原版Retinotopyです。",
+    "最近の心理学・神経科学分野でのPythonの利用の広がりを受けて、MATLAB Psychtoolbox 3で作成した原版Retinotopyの刺激を、PsychoPyで動作するようにPythonで書き換えたものが、本パッケージPyRetinotopyです。"
+  ],
+  "edited_english": [
+    "PyRetinotopy and its predecessor, Retinotopy, build on a series of modified versions of the retinotopic stimuli that I developed and used while working at the University of Birmingham, UK, under the supervision of Dr Andrew Welchman and Dr Zoe Kourtzi. I am deeply grateful to both of them for their support.",
+    "These stimuli were based on code originally developed by Dr Hiroki Yamamoto and Dr Yoshimichi Ejima at Kyoto University. That code ran on Solaris and IRIX workstations and was written in C/C++ using the Visualization Toolkit (VTK; Kitware Inc.). I learned a great deal from them about how to create visual stimuli.",
+    "I thoroughly revised and updated those stimuli in MATLAB and Psychtoolbox to create the original Retinotopy package. Over the years, I also added new functionality and new types of stimuli.",
+    "As Python has become increasingly widely used in psychology and neuroscience, I rewrote the original Retinotopy stimuli, developed in MATLAB and Psychtoolbox 3, in Python so that they run in PsychoPy. These rewritten stimuli form the PyRetinotopy package."
+  ],
+  "preserved_details": [
+    "Modified versions of stimuli developed and used at Birmingham",
+    "Welchman and Kourtzi supervision and support",
+    "Yamamoto and Ejima code at Kyoto University",
+    "C/C++ and VTK (Kitware Inc.)",
+    "Solaris/IRIX workstations",
+    "Learning how to create visual stimuli from Yamamoto and Ejima",
+    "Extensive MATLAB/Psychtoolbox revision and update",
+    "New functions and stimulus types added over years of development",
+    "Python/PsychoPy development in response to wider Python use in psychology and neuroscience"
+  ],
+  "source_revision": "34170a20c64dddc3aa656b099f0bf1847b42b64d"
+}

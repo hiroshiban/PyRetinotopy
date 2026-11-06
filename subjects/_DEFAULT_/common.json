@@ -1,0 +1,22 @@
+{
+  "run": 1,
+  "seed": 1,
+  "task": {
+    "interval_s": [
+      2.0,
+      6.0
+    ],
+    "duration_s": 0.3,
+    "response_window_s": 1.0,
+    "dim_ratio": 0.4,
+    "depth_multiplier": 2.0,
+    "fixation_radius_px": 4,
+    "fixation_type": "circle",
+    "fixation_color": [
+      1,
+      1,
+      1
+    ],
+    "enabled": true
+  }
+}

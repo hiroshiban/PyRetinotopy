@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyretinotopy"
+version = "0.4.0"
+description = "PyRetinotopy: binocular retinotopic mapping stimuli for PsychoPy"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE.txt"}
+authors = [{name = "Hiroshi Ban"}]
+dependencies = ["numpy>=1.23", "Pillow>=9"]
+
+[project.optional-dependencies]
+presentation = ["psychopy>=2024.2", "psychopy-glfw==0.0.2", "glfw==2.8.0"]
+legacy = ["scipy>=1.9", "h5py>=3"]
+
+[project.scripts]
+pyretinotopy = "pyretinotopy.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["pyretinotopy*"]
+
+[tool.setuptools.package-data]
+pyretinotopy = ["data/brainvoyager/*.olt"]

@@ -1,0 +1,163 @@
+{
+  "timing": {
+    "initial_fixation_s": 4.0,
+    "final_fixation_s": 4.0,
+    "cycle_s": 60.0,
+    "rest_s": 0.0,
+    "repeats": 6,
+    "polar_cycle_s": 60.0,
+    "polar_rest_s": 0.0,
+    "polar_repeats": 6,
+    "eccentricity_cycle_s": 40.0,
+    "eccentricity_rest_s": 8.0,
+    "eccentricity_repeats": 9,
+    "block_s": 16.0,
+    "trial_s": 2.0,
+    "trigger_keys": [
+      "t",
+      "5"
+    ],
+    "response_keys": [
+      "r",
+      "g"
+    ],
+    "abort_keys": [
+      "escape",
+      "q"
+    ],
+    "skip_triggers": 0,
+    "start": "trigger",
+    "tr_s": 2.0
+  },
+  "stimulus": {
+    "min_radius_deg": 0.0,
+    "max_radius_deg": 7.5,
+    "wedge_width_deg": 24,
+    "start_angle_deg": 0,
+    "step_angle_deg": 12.0,
+    "checker_wedges": 4,
+    "checker_rings": 8,
+    "checker_phase_deg": 0.0,
+    "dual_ring_width_deg": 24.0,
+    "dual_ring_step_angle_deg": 12.0,
+    "dual_ring_checker_wedges": 4,
+    "dual_ring_checker_rings": 2,
+    "dual_ring_phase_deg": 0.0,
+    "bar_width_deg": 1.5,
+    "bar_steps": 16,
+    "bar_angles_deg": [
+      0,
+      45,
+      90,
+      135,
+      180,
+      225,
+      270,
+      315,
+      0
+    ],
+    "bar_checks_long": 18,
+    "bar_checks_short": 2,
+    "multifocal_sectors": 12,
+    "multifocal_rings": 3,
+    "multifocal_design": [],
+    "target_radii_deg": [
+      2.7,
+      3.8
+    ],
+    "colors": [
+      [
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0
+      ],
+      [
+        1,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        1
+      ],
+      [
+        0,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0.5019607843137255,
+        0
+      ],
+      [
+        0.5019607843137255,
+        0,
+        1
+      ]
+    ],
+    "flicker_hz": 5,
+    "disparity_arcmin": [
+      -12,
+      12,
+      5
+    ],
+    "dot_density_percent": 0.5,
+    "dot_radius_deg": 0.05,
+    "dot_colors": [
+      [
+        1,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        0
+      ]
+    ],
+    "dot_background": false,
+    "dot_correlation": 1.0,
+    "dot_refresh_hz": 10,
+    "object_source": "../../assets/object-images/manifest.json",
+    "object_count": 120,
+    "object_scale": [
+      0.2,
+      0.5
+    ],
+    "object_disparity_arcmin": [
+      -12,
+      12
+    ],
+    "object_update_s": 0.25,
+    "object_cache_dir": "../../cache/object-movies",
+    "object_texture_slots": 4,
+    "noise_contrast": 0.2,
+    "spatial_convention": "ptb3",
+    "dual_ring_start_angle_deg": -102.0,
+    "multifocal_indexing": "corrected",
+    "temporal_convention": "ptb3",
+    "disparity_assignment": "ptb3"
+  }
+}

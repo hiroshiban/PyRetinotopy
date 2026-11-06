@@ -1,0 +1,53 @@
+{
+  "display": {
+    "mode": "mono",
+    "size_px": [
+      1280,
+      1080
+    ],
+    "screens": [
+      0,
+      1
+    ],
+    "width_cm": 33.3,
+    "distance_cm": 96.0,
+    "ipd_cm": 6.4,
+    "full_screen": false,
+    "refresh_hz": 60.0,
+    "backend": "pyglet",
+    "high_priority": true,
+    "realtime_priority": false,
+    "gpu_mask_limit_mb": 1024,
+    "background": [
+      0.5019607843137255,
+      0.5019607843137255,
+      0.5019607843137255
+    ],
+    "eye_offsets_px": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "mirror_x": [
+      false,
+      false
+    ],
+    "mirror_y": [
+      false,
+      false
+    ],
+    "gamma": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "marker_corner": 0,
+    "marker_size_px": 50,
+    "marker_duration_s": 0.1
+  }
+}

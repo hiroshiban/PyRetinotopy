@@ -1,0 +1,19 @@
+{
+  "runs": [
+    {
+      "subject": "HB",
+      "mode": "ccw",
+      "run": 1
+    },
+    {
+      "subject": "HB",
+      "mode": "ccw",
+      "run": 2
+    },
+    {
+      "subject": "HB",
+      "mode": "ccw",
+      "run": 3
+    }
+  ]
+}
