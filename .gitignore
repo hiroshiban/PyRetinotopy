@@ -10,9 +10,23 @@ __pycache__/
 !/subjects/README.md
 build/
 dist/
-docs/source-baseline.json
-docs/qa
+/docs/qa/
 cache/
 assets/object-images/*.npy
 optional-libs/
 tmp/
+
+# Local development records are archived outside the public repository.
+/docs/MIGRATION.ja.md
+/docs/NAME_CHECK.ja.md
+/docs/PUBLISHING.ja.md
+/docs/SOURCE_AUDIT.ja.md
+/docs/VALIDATION-v0.1.ja.md
+/docs/VALIDATION.ja.md
+/docs/source-baseline.json
+/docs/manual/lineage_sources.json
+/tools/audit_ptb3_features.py
+/tools/audit_ptb3_phase.py
+/tools/check_publication.py
+/tools/verify_source.py
+/private-backups/

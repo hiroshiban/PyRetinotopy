@@ -2,7 +2,7 @@
   "project": "PyRetinotopy",
   "language": "en",
   "version": "0.4.0",
-  "date": "2026-11-06",
+  "date": "2026-11-10",
   "author": "Hiroshi Ban",
   "chapters": [
     {
@@ -32,7 +32,7 @@
             [
               [
                 "Hiroshi Ban",
-                "v0.4.0 / 2026-11-06"
+                "v0.4.0 / 2026-11-10"
               ]
             ],
             [
@@ -75,7 +75,7 @@
             [
               [
                 "14 basic modes × 5 carrier/task options = 70 modes",
-                "JSON settings, scanner-key waiting, timing and response logs, and analysis apertures"
+                "v0.4.0 / 2026-11-10"
               ],
               [
                 "Single display, side-by-side, top/bottom, anaglyph, interleaved, dual display, and quad buffer",
@@ -1010,52 +1010,44 @@
           "args": [
             [
               "Cycle",
-              "Fixed target",
-              "Error in a 368-second binocular test"
+              "Fixed target relative to run onset"
             ],
             [
               [
                 "1",
-                "t0 + 4 s",
-                "+11.271 ms"
+                "t0 + 4 s"
               ],
               [
                 "2",
-                "t0 + 64 s",
-                "+5.625 ms"
+                "t0 + 64 s"
               ],
               [
                 "3",
-                "t0 + 124 s",
-                "+3.696 ms"
+                "t0 + 124 s"
               ],
               [
                 "4",
-                "t0 + 184 s",
-                "+2.952 ms"
+                "t0 + 184 s"
               ],
               [
                 "5",
-                "t0 + 244 s",
-                "+2.029 ms"
+                "t0 + 244 s"
               ],
               [
                 "6",
-                "t0 + 304 s",
-                "+1.090 ms"
+                "t0 + 304 s"
               ]
             ],
             [
-              0.12,
-              0.46,
-              0.42
+              0.18,
+              0.82
             ]
           ]
         },
         {
           "kind": "p",
           "args": [
-            "These example measurements used ordinary high priority and GLFW full-screen presentation (docs/qa/native-stereo-368s-block-timing.tsv). Error did not accumulate toward the end. See docs/VALIDATION.ja.md for the exact test conditions."
+            "The table gives cumulative target times for 4 seconds of initial fixation and 60-second cycles. Actual transitions are saved in block_timing.tsv for each acquisition. Inspect planned_onset_s, actual_onset_s, and error_s to check whether errors increase toward the end of a run."
           ]
         },
         {
@@ -1225,7 +1217,7 @@
       ]
     },
     {
-      "title": "Troubleshooting and validation scope",
+      "title": "Troubleshooting and operational checks",
       "blocks": [
         {
           "kind": "table",
@@ -1269,19 +1261,19 @@
         {
           "kind": "h",
           "args": [
-            "What has been checked"
+            "Checks before acquisition"
           ]
         },
         {
           "kind": "p",
           "args": [
-            "The 96 automated tests cover stimulus settings and positions, cumulative timing, eye assignment, tasks, result saving and backups, and PRT/OLT output. Test conditions and measurements are recorded in docs/VALIDATION.ja.md."
+            "Check stimulus settings and positions, cumulative timing, eye assignment, tasks, result saving and backups, and PRT/OLT output under the conditions used for your experiment. Run the automated software tests with python -m unittest discover -s tests -v."
           ]
         },
         {
           "kind": "p",
           "args": [
-            "GPU presentation and normal-run performance after the v0.4.0 changes still require verification on the intended apparatus. Hardware OpenGL may be unavailable through Remote Desktop; use a GPU-enabled local desktop for presentation."
+            "Presentation requires hardware OpenGL. It may be unavailable through Remote Desktop; use a GPU-enabled local desktop. Verify timing and normal-run performance with the scanner, displays, and response devices used for data collection."
           ]
         },
         {
@@ -1293,7 +1285,7 @@
         {
           "kind": "p",
           "args": [
-            "README.md covers the project, background, and references. docs/USAGE.ja.md gives operating instructions; docs/PRESENTATION_TIMING.ja.md explains timing; docs/VALIDATION.ja.md records measurements; docs/MIGRATION.ja.md describes compatibility differences."
+            "README.md covers the project, background, and references. docs/USAGE.ja.md gives operating instructions; docs/PRESENTATION_TIMING.ja.md explains timing. docs/PTB3_FEATURES.ja.md and docs/PTB3_PARAMETER_MAP.ja.md describe feature and setting correspondence with the original. docs/PTB3_PARITY.ja.md explains starting positions, scan order, and compatibility."
           ]
         },
         {

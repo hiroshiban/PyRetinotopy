@@ -42,8 +42,6 @@ v0.2.2以前の開始位置を再現する場合は `spatial_convention: "legacy
 
 ## 検証と限界
 
-`python -m unittest discover -s tests -v` は63件成功しました。`python tools/audit_ptb3_phase.py` で全70モード・全スケジュール位置と独立乱数時刻を照合し、26,214,400点・時刻のマスク差分0でした。別途、開始角・幅・ステップの変更（HRF・localizerの部分視野条件を含む）、休止前後、LGNの非対称角、全255試行のmultifocal原版ID互換を試験しました。
-
-参照式は `tests/reference_ptb3.py`、原版ファイルのハッシュと計測数は [照合JSON](qa/spatial-phase-audit.json)、代表8種の旧Python・原版式・新Pythonの窓は [比較図](qa/spatial-phase-comparison.png) です。図のmultifocal原版式はID重複を修正した配置を示します。
+連続座標の刺激窓と原版の参照式を照合する自動テストは、`python -m unittest discover -s tests -v` で実行できます。参照式は `tests/reference_ptb3.py` に含まれます。開始角・幅・ステップの変更、休止前後、LGNの非対称角、multifocalの原版ID互換もテストの対象です。
 
 これは連続座標の刺激窓の検証です。原版はPPDの整数丸め、1.01倍のラスタ余白、ceil境界等を使うため、画素境界や中心注視点の差は残り得ます。チェッカー色列・課題列・乱数キャリアのフレームバッファ同一性や、装置での光学的同一性は主張しません。ラン長・周期・ブロックの累積目標時刻と絶対時刻制御は変更していません。

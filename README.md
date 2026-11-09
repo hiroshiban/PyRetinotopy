@@ -3,7 +3,7 @@
 <div align="right">
 Original Retinotopy created: "2013-11-25 Hiroshi Ban"<br>
 Python/PsychoPy adaptation: "2026-11-06"<br>
-Last Update: "2026-11-06"
+Last Update: "2026-11-10"
 </div>
 
 <br>
@@ -20,7 +20,7 @@ Last Update: "2026-11-06"
 
 Hiroshi Ban, author and responsible investigator of PyRetinotopy, reviews the transfer of functionality from the original MATLAB/PTB3 Retinotopy and performs operational checks throughout development. He is responsible for the software and its release.
 
-The current version is **0.4.0**. The aim is to retain the original PTB3 experiment-facing functionality while replacing MATLAB/Psychtoolbox with Python/PsychoPy. Different implementation procedures are used where they improve timing, reproducibility or data preservation. [The feature audit](docs/PTB3_FEATURES.ja.md) and [all 96 referenced settings](docs/PTB3_PARAMETER_MAP.ja.md) document the correspondence and explicit limits. Initial positions and scan order now follow the original PTB3 source formulas; see [spatial compatibility](docs/PTB3_PARITY.ja.md). Core stimuli and binocular presentation paths have been implemented. Object-image presentation uses native NumPy data and movies prepared before acquisition. Equivalence to the original version and validation with scanner/display hardware are still in progress; see [Current status and TODOs](#TODOs) and the [validation record](docs/VALIDATION.ja.md).
+The current version is **0.4.0**. The aim is to retain the original PTB3 experiment-facing functionality while replacing MATLAB/Psychtoolbox with Python/PsychoPy. Different implementation procedures are used where they improve timing, reproducibility or data preservation. [The feature correspondence](docs/PTB3_FEATURES.ja.md) and [all 96 referenced settings](docs/PTB3_PARAMETER_MAP.ja.md) document the correspondence and explicit limits. Initial positions and scan order now follow the original PTB3 source formulas; see [spatial compatibility](docs/PTB3_PARITY.ja.md). Core stimuli and binocular presentation paths have been implemented. Object-image presentation uses native NumPy data and movies prepared before acquisition. Before collecting experimental data, check stimulus timing, eye assignment, and calibration on the intended scanner/display hardware.
 
 [日本語の実行手順 / Japanese usage guide](docs/USAGE.ja.md)
 
@@ -40,7 +40,6 @@ The project and experiment guides introduce PyRetinotopy, its author and purpose
 - [License](#License)
 - [Citation](#Citation)
 - [References](#References)
-- [Current status and TODOs](#TODOs)
 
 ***
 
@@ -72,7 +71,7 @@ The main advantages of this package are
   ***2. As I have been engaging in binocular/stereo vision studies with fMRI/MEG, I often have to present the stimuli with binocular viewing setups using, for instance, stereo-shutter-goggles or polarized glasses on the dual display systems. This PyRetinotopy package retains this emphasis on binocular presentation, with shared stimulus definitions for single-display and binocular configurations. The Python port includes dual-window and quad-buffer stereo presentation paths; validation with the intended hardware is still required.***  
 
 For more details, please read the descriptions below.  
-Also please check the module docstrings in [pyretinotopy](pyretinotopy) and the [migration notes](docs/MIGRATION.ja.md).  
+Also please check the module docstrings in [pyretinotopy](pyretinotopy) and the [PTB3 compatibility notes](docs/PTB3_PARITY.ja.md).
 
 ***Finally, the package is made publicly available in the hope of keeping our research group being transparent and open. Furthermore, the package is made open also for people who want to know our group's research activities, who want to join our group in the near future, and who want to learn how to create visual stimuli for vision science. Please feel free to contact us if you are interested in our research projects.***  
 
@@ -171,7 +170,7 @@ Open [PyRetinotopy.py](PyRetinotopy.py) in PsychoPy Coder and run it. A file dia
 python -m pip install -e .
 ```
 
-The command-line entry point `pyretinotopy` is then also available. The project/repository directory is **PyRetinotopy**; the distribution, Python import, and installed command are `pyretinotopy`. These names distinguish this port from the original Retinotopy directory without relying on capitalization. See the [name check](docs/NAME_CHECK.ja.md).
+The command-line entry point `pyretinotopy` is then also available. The project/repository directory is **PyRetinotopy**; the distribution, Python import, and installed command are `pyretinotopy`. These names distinguish this port from the original Retinotopy directory without relying on capitalization.
 
 
 [back to the menu](#Menu)
@@ -347,7 +346,7 @@ The helper does not execute MATLAB code. It writes a draft configuration and a `
 
 The original fixation types are available as `task.fixation_type: "circle"`, `"cross"`, or `"concentric"` (numeric 1, 2, 3 are also accepted). Type 2 reproduces the original framed cross with tick marks; type 3 retains the central disk and quadrant gaps. `"square"` remains a Python extension. Size and color use `fixation_radius_px` and `fixation_color`. The fixation-task dim color defaults to the original `[64,64,64]/255`, independently of stimulus `dim_ratio`.
 
-![PTB3 fixation targets: software geometry](docs/qa/fixation-types.png)
+![PTB3 fixation targets: software geometry](docs/images/fixation-types.png)
 
 *Software-rendered geometry of the three PTB3 fixation targets.*
 
@@ -373,7 +372,7 @@ python -m pyretinotopy export-olts --output brainvoyager-colors
 
 Multifocal regions follow the original clockwise order, with unique IDs by default (`multifocal_indexing: "corrected"`). The original zero-phase MATLAB generator overlaps some region IDs; use `"ptb3"` for that field to reproduce its overlap (requires phase 0 and width 360). This compatibility option is separate from the angle convention.
 
-Use `spatial_convention: "legacy-python"` to replay the v0.2.x geometry. Saved acquisition `config.json` files with a sibling `summary.json` recording version <=0.2.2 are recognized automatically if no convention is explicitly saved. Other settings files adopt the new defaults. Pixel boundaries, stochastic carriers and task sequences are not asserted to be identical MATLAB framebuffers. See the [spatial audit](docs/PTB3_PARITY.ja.md) and [migration notes](docs/MIGRATION.ja.md).
+Use `spatial_convention: "legacy-python"` to replay the v0.2.x geometry. Saved acquisition `config.json` files with a sibling `summary.json` recording version <=0.2.2 are recognized automatically if no convention is explicitly saved. Other settings files adopt the new defaults. Pixel boundaries, stochastic carriers and task sequences are not asserted to be identical MATLAB framebuffers. See the [spatial compatibility notes](docs/PTB3_PARITY.ja.md).
 
 
 [back to the menu](#Menu)
@@ -491,35 +490,3 @@ The following publications describe the research background and applications of 
    DOI: https://doi.org/10.1523/ENEURO.0039-21.2021  
 
 [back to the menu](#Menu)
-
-# <a name="TODOs"></a> **Current status and TODOs**
-
-The Python port implements the stimulus families and 70 mode names described above, binocular image generation and display paths, fixation/stimulus detection tasks, scanner-key waiting, timing/response logs, and planned/actual-flip stimulus-window exports.
-
-Core tests currently cover 96 cases, including source-derived aperture checks of every position in all 70 modes, lossless native image conversion, cache reproducibility, and run-relative timing under faster/slower refresh and delayed frames. A v0.2.0 full 368-second binocular object-image run at 1031×1031 pixels per eye, 120 objects and 250 ms updates completed with zero recorded long flip intervals in the tested GLFW/full-screen configuration. A repeat at that version recorded one long interval (25.017 ms, followed by 8.311 ms). Cycle-onset errors were within one nominal refresh and did not accumulate in either run. See the validation record for exact conditions and measurements. These results do not establish equivalence to the original version or qualify other scanner/display setups.
-
-The [feature correspondence](docs/PTB3_FEATURES.ja.md) and [parameter reference](docs/PTB3_PARAMETER_MAP.ja.md) describe the implemented controls and remaining device-specific limits. GPU presentation and normal-run performance after the v0.4.0 changes still require verification on the intended apparatus. Presentation requires hardware OpenGL, which may be unavailable through Remote Desktop.
-
-The remaining work includes:
-
-1. Extend the v0.3.0 source-formula spatial checks to matched MATLAB framebuffer exports, pixel boundaries, stochastic carriers, and task timing.
-2. Select and record corrected or literal PTB3 multifocal region indexing when comparing historical runs.
-3. Qualify v0.4.0 on the GPU-enabled local desktop, then extend performance qualification to other GPUs, operating systems, display modes and object-image/anaglyph combinations.
-4. Validate real scanner triggers, response devices, photodiode markers, binocular eye assignment, dual-display synchronization, and shutter hardware.
-5. Add and test device-specific functionality where needed, including PROPixx/Datapixx control and direct parallel-port triggers. Native JSON gamma tables and BrainVoyager OLT/PRT outputs are now implemented; physical calibration and application-level import still require verification.
-6. Validate the port on macOS and Linux.
-
-Implementation notes and current test records:
-
-- [Source review and feature mapping](docs/SOURCE_AUDIT.ja.md) (Japanese).
-- [Migration design and compatibility differences](docs/MIGRATION.ja.md) (Japanese).
-- [Validation record](docs/VALIDATION.ja.md) (Japanese).
-- [Japanese usage guide](docs/USAGE.ja.md).
-- [Python stimulus preview gallery](docs/qa/stimulus-gallery.png).
-- [Git/TortoiseGit setup and publication](docs/PUBLISHING.ja.md) (Japanese).
-
-
-[back to the menu](#Menu)
-
-
-

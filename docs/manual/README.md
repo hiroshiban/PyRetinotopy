@@ -14,4 +14,4 @@ python tools/build_manual.py
 
 PDFs are written to `docs/` by default. Use `--language ja` or `--language en` to rebuild one edition. Japanese defaults use Windows Yu Gothic; pass `--font` and `--bold-font` with appropriate TTF/TTC fonts on another system. The guide-building dependency is separate from presentation dependencies.
 
-After changing content, render both PDFs with Poppler and inspect every page. Keep command blocks identical between language editions and preserve the original software/research/image-data acknowledgments. The experimental validation results in the guide are historical measurements, not new tests performed by a translation or name change.
+After changing content, render both PDFs with Poppler and inspect every page. Keep command blocks identical between language editions and preserve the original software/research/image-data acknowledgments. The guides describe operating procedures; timing, calibration, and binocular presentation must be checked on the apparatus used for data collection.

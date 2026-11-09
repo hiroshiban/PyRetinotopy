@@ -101,4 +101,4 @@
 | `sparam.waitframes` | flicker_hz / dot_refresh_hz; logical updates on a full-refresh loop | implemented |
 | `sparam.width` | stimulus.wedge_width_deg / bar_width_deg | implemented |
 
-詳細な関数別参照とソースのSHA-256は [監査JSON](qa/ptb3-feature-audit.json)。機能と検証範囲は [継承状況](PTB3_FEATURES.ja.md)。
+各機能の使い方と機器依存の制約は [機能対応表](PTB3_FEATURES.ja.md) を参照してください。

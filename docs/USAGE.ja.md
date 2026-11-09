@@ -2,7 +2,7 @@
 
 番浩志が開発・公開してきたMATLAB Psychtoolbox 3版Retinotopy刺激セット（[https://github.com/hiroshiban/Retinotopy](https://github.com/hiroshiban/Retinotopy)）を基にした、PsychoPy用のPython版です。表示名とプロジェクトディレクトリ名は **PyRetinotopy**、配布・Python import・コマンド名は **pyretinotopy** です。
 
-**現在は v0.4.0 です。** PTB3の画像座標・逆順配列に合わせ、開始位置と複合刺激の環状位置を修正しました。既定結果保存先は原版と同じ被験者別・日付別の構成です。画像データはNumPy形式へ独立させ、取得前の全画像準備とGPU先行転送を使います。全刺激をラン開始からの累積経過時間で制御します。確認範囲は [検証記録](VALIDATION.ja.md) を参照してください。
+**現在は v0.4.0 です。** PTB3の画像座標・逆順配列に合わせ、開始位置と複合刺激の環状位置を修正しました。既定結果保存先は原版と同じ被験者別・日付別の構成です。画像データはNumPy形式へ独立させ、取得前の全画像準備とGPU先行転送を使います。全刺激をラン開始からの累積経過時間で制御します。機器依存の制約は [機能対応表](PTB3_FEATURES.ja.md) を参照してください。
 
 元の `../Retinotopy` のプログラムや被験者データは変更しません。Python版のコード、設定例、テスト、実行結果はこのディレクトリ内に置きます。
 
@@ -140,14 +140,12 @@ v0.2.2以前の呈示を再現する場合は `spatial_convention: "legacy-pytho
 - [プロジェクト・実験ガイド（日本語PDF）](PyRetinotopy_Experiment_Guide_ja.pdf)
 - [Project and Experiment Guide（English PDF）](PyRetinotopy_Experiment_Guide_en.pdf)
 - [呈示時刻とブロック境界の設計](PRESENTATION_TIMING.ja.md)
-- [原版の調査、機能対応、命名案](SOURCE_AUDIT.ja.md)
-- [設計、互換性差分、開発方針](MIGRATION.ja.md)
-- [検証結果と実機確認が残る項目](VALIDATION.ja.md)
-- [刺激一覧プレビュー](qa/stimulus-gallery.png)
+- [原版からの機能対応と制約](PTB3_FEATURES.ja.md)
+- [原版設定とPython設定の対応](PTB3_PARAMETER_MAP.ja.md)
+- [開始位置・走査順と旧版との互換性](PTB3_PARITY.ja.md)
 
 ```powershell
 & 'C:\Program Files\PsychoPy\python.exe' -m unittest discover -s tests -v
-& 'C:\Program Files\PsychoPy\python.exe' tools\verify_source.py
 & 'C:\Program Files\PsychoPy\python.exe' tools\qa.py --live
 ```
 
@@ -164,7 +162,7 @@ v0.2.2以前の呈示を再現する場合は `spatial_convention: "legacy-pytho
 別保存先を意図的に使うときだけ `--output-root ROOT` を指定します。この場合は従来の `ROOT/sub-ID/モード_run番号/` です。既存のdataフォルダと過去の取得ログは自動移動しません。上記の解析出力例の261106は実際の取得日に置き換えてください。
 
 
-## 原版の機能継承と今回の追加
+## 原版から継承した機能
 
 注視点は `task.fixation_type` のcircle／cross／concentric（数値1／2／3も可）です。原版タイプ2は枠と目盛状の十字、タイプ3は中央点と切れ目のある外周を再現します。`fixation_radius_px` と `fixation_color` を指定し、課題時の暗色は既定で64/255です。
 
@@ -172,6 +170,6 @@ v0.2.2以前の呈示を再現する場合は `spatial_convention: "legacy-pytho
 
 周辺固視ガイドは `display.background_type: "grid"` とpatch設定、半期間マーカーは `marker_timing: "half"`、実測refreshの採用は `use_measured_refresh: true` で設定します。任意のgamma表は `gamma_lut`、dualの第2物理画面は `gamma_lut_right` にN×3のRGBを与えます。詳しい一覧は [機能継承表](PTB3_FEATURES.ja.md) と [全96設定項目](PTB3_PARAMETER_MAP.ja.md) を参照してください。
 
-`preview --all-positions` で全位置とmanifest、`export --prt FILE` で予定／実flipに基づくPRT、`export-olts --output DIR` で原版6色表を出力できます。RDPではGPU OpenGLが使えないことがあるため、今回のv0.4.0実画面再検証はローカル接続時の確認項目です。
+`preview --all-positions` で全位置とmanifest、`export --prt FILE` で予定／実flipに基づくPRT、`export-olts --output DIR` で原版6色表を出力できます。刺激呈示にはハードウェアOpenGLが必要です。リモートデスクトップでは利用できない場合があるため、実験にはGPUが利用できるローカルデスクトップを使用してください。
 
 本改訂はOpenAIの生成AI（Codex等）の支援を受け、作者・責任者である番浩志が機能継承の確認と動作チェックを行いながら進めています。ソフトウェアと公開版の責任は作者にあります。
