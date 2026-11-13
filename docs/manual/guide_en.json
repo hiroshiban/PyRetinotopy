@@ -2,7 +2,7 @@
   "project": "PyRetinotopy",
   "language": "en",
   "version": "0.4.0",
-  "date": "2026-11-10",
+  "date": "2026-11-13",
   "author": "Hiroshi Ban",
   "chapters": [
     {
@@ -32,7 +32,7 @@
             [
               [
                 "Hiroshi Ban",
-                "v0.4.0 / 2026-11-10"
+                "v0.4.0 / 2026-11-13"
               ]
             ],
             [
@@ -75,7 +75,7 @@
             [
               [
                 "14 basic modes × 5 carrier/task options = 70 modes",
-                "v0.4.0 / 2026-11-10"
+                "v0.4.0 / 2026-11-13"
               ],
               [
                 "Single display, side-by-side, top/bottom, anaglyph, interleaved, dual display, and quad buffer",
@@ -401,7 +401,7 @@
         {
           "kind": "p",
           "args": [
-            "All positions were compared with a separate implementation of the source formulas in continuous coordinates. This is not a MATLAB framebuffer comparison: pixel rounding, task sequences and random carriers may differ. docs/PTB3_PARITY.ja.md records formulas, comparisons and limits.",
+            "All positions were compared with a separate implementation of the source formulas in continuous coordinates. This is not a MATLAB framebuffer comparison: pixel rounding, task sequences and random carriers may differ. docs/PTB3_PARITY.md records formulas, comparisons and limits.",
             "small"
           ]
         }
@@ -990,7 +990,7 @@
         {
           "kind": "p",
           "args": [
-            "Checker and RDS updates start at first active presentation and pause during rest. RDS cycles opposing checker-plane disparities. docs/PTB3_FEATURES.ja.md and PTB3_PARAMETER_MAP.ja.md record all controls, legacy Python replay and remaining hardware limits.",
+            "Checker and RDS updates start at first active presentation and pause during rest. RDS cycles opposing checker-plane disparities. docs/PTB3_FEATURES.md and PTB3_PARAMETER_MAP.md record all controls, legacy Python replay and remaining hardware limits.",
             "small"
           ]
         }
@@ -1285,7 +1285,7 @@
         {
           "kind": "p",
           "args": [
-            "README.md covers the project, background, and references. docs/USAGE.ja.md gives operating instructions; docs/PRESENTATION_TIMING.ja.md explains timing. docs/PTB3_FEATURES.ja.md and docs/PTB3_PARAMETER_MAP.ja.md describe feature and setting correspondence with the original. docs/PTB3_PARITY.ja.md explains starting positions, scan order, and compatibility."
+            "README.md covers the project, background, and references. docs/USAGE.md gives operating instructions; docs/PRESENTATION_TIMING.md explains timing. docs/PTB3_FEATURES.md and docs/PTB3_PARAMETER_MAP.md describe feature and setting correspondence with the original. docs/PTB3_PARITY.md explains starting positions, scan order, and compatibility."
           ]
         },
         {
@@ -1502,5 +1502,6 @@
         }
       ]
     }
-  ]
+  ],
+  "pdf_title": "Project and Experiment Guide"
 }

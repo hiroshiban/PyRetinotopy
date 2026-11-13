@@ -131,7 +131,7 @@ def build(language,args):
                 raise ValueError('Unknown guide block: '+kind)
     output=args.output_dir/f'PyRetinotopy_Experiment_Guide_{language}.pdf'
     output.parent.mkdir(parents=True,exist_ok=True)
-    name='プロジェクト・実験ガイド' if language=='ja' else 'Project and Experiment Guide'
+    name=data.get('pdf_title','Project and Experiment Guide')
     doc=SimpleDocTemplate(str(output),pagesize=A4,rightMargin=17*mm,leftMargin=17*mm,
                          topMargin=21*mm,bottomMargin=19*mm,
                          title=f'PyRetinotopy {name} v{data["version"]}',author=data['author'],

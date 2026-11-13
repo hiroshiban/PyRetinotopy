@@ -1,10 +1,12 @@
 # PyRetinotopy — Retinotopy for PsychoPy
 
+[English](USAGE.md) | [日本語](USAGE.ja.md)
+
 番浩志が開発・公開してきたMATLAB Psychtoolbox 3版Retinotopy刺激セット（[https://github.com/hiroshiban/Retinotopy](https://github.com/hiroshiban/Retinotopy)）を基にした、PsychoPy用のPython版です。表示名とプロジェクトディレクトリ名は **PyRetinotopy**、配布・Python import・コマンド名は **pyretinotopy** です。
 
 **現在は v0.4.0 です。** PTB3の画像座標・逆順配列に合わせ、開始位置と複合刺激の環状位置を修正しました。既定結果保存先は原版と同じ被験者別・日付別の構成です。画像データはNumPy形式へ独立させ、取得前の全画像準備とGPU先行転送を使います。全刺激をラン開始からの累積経過時間で制御します。機器依存の制約は [機能対応表](PTB3_FEATURES.ja.md) を参照してください。
 
-元の `../Retinotopy` のプログラムや被験者データは変更しません。Python版のコード、設定例、テスト、実行結果はこのディレクトリ内に置きます。
+旧版のMATLABソースへのパスは、任意の一度限りの変換で使用する例です。通常の刺激呈示には元のRetinotopyディレクトリは必要ありません。
 
 ## 実装した刺激
 
@@ -26,7 +28,7 @@
 
 ## 起動
 
-このPCでは、通常の `python` は未設定ですが、PsychoPyにPythonが同梱されています。
+以下はWindows版PsychoPyに同梱されたPythonを使用する例です。プロジェクトとPythonのパスは、実際の配置に合わせて変更してください。
 
 ```powershell
 Set-Location 'E:\PyRetinotopy\PyRetinotopy'
@@ -39,7 +41,7 @@ Set-Location 'E:\PyRetinotopy\PyRetinotopy'
 
 通常のPython環境では、PsychoPyが動作する環境で `python -m pip install -e .` とします。基本依存はPython 3.10以上、NumPy、Pillowです。呈示にはPsychoPyを使います。旧画像変換とMAT互換出力を使うときは `pip install -e .[legacy]` でSciPy/h5pyを追加します。動作確認したPsychoPyは **2024.2.4 / Python 3.10.11 / Windows** です。
 
-Windowsの撮像用にはGLFW＋全画面を推奨します。PsychoPy本体を変更せず、バックエンドをプロジェクト内に置く場合は次を実行します。このPCでは導入済みです。
+Windowsの撮像用にはGLFW＋全画面を推奨します。PsychoPy本体を変更せず、バックエンドをプロジェクト内に置く場合は次を実行します。
 
 ```powershell
 & 'C:\Program Files\PsychoPy\python.exe' -m pip install --target optional-libs --no-deps psychopy-glfw==0.0.2 glfw==2.8.0
@@ -75,7 +77,7 @@ JSONの `display`、`timing`、`stimulus`、`task` を編集します。単位�
 
 原版の `Presentation/subjects/_DEFAULT_` に対応する [subjects/_DEFAULT_](../subjects/_DEFAULT_) を追加しました。`--subject HB --mode ccwf` は既定フォルダの `common.json` → `retinotopy_display.json` → `c_pol.json` → 任意の `ccwf.json` を読み、その後に被験者フォルダの同名ファイルを同じ順で重ねます。未指定ファイル・項目は既定値を使い、被験者側は差分だけ記載できます。リストは全体を置き換えます。9種類の刺激別ファイルは原版と対応する名前です。
 
-`init-subject` が作る `HB/common.json` は空の差分、`HB/ccwf.json` はrun番号だけです。表示補正は `HB/retinotopy_display.json`、楔形共通の条件は `HB/c_pol.json` 等へ記載できます。構造・優先順位・例・sessionでの使用は [被験者設定ガイド](../subjects/README.md) を参照してください。
+`init-subject` が作る `HB/common.json` は空の差分、`HB/ccwf.json` はrun番号だけです。表示補正は `HB/retinotopy_display.json`、楔形共通の条件は `HB/c_pol.json` 等へ記載できます。構造・優先順位・例・sessionでの使用は [被験者設定ガイド](../subjects/README_ja.md) を参照してください。
 
 以前からの `init FILE --subject HB --mode ccwf` と `--config FILE` も使用できます。こちらは全項目を持つ独立JSONを使う方式で、他の既定ファイルを探索しません。保存済み取得条件を再現するため、この動作は維持しています。`validate --subject HB --mode ccwf --save-config resolved.json` で継承後の全設定も保存できます。
 
@@ -97,7 +99,7 @@ v0.2.2以前の呈示を再現する場合は `spatial_convention: "legacy-pytho
 
 ## 画像刺激とMATLAB設定の移行
 
-`examples/object-images.json` は、Pythonプロジェクト内の `assets/object-images/manifest.json` を参照します。7,493枚のRGBA画像はすべてNumPy形式へ変換済みで、呈示では元のMATファイルを読みません。NumPyバンクは約1.96 GBで、`images.npy` の配列順は画像×縦×横×RGBAです。通常のPNG等の画像ディレクトリも指定できます。
+`examples/object-images.json` は、Pythonプロジェクト内の `assets/object-images/manifest.json` を参照します。使用前に対応するNumPy画像バンクを準備してください。約1.96 GBの `images.npy` はGit管理から除外されています。バンクは7,493枚のRGBA画像を含み、配列順は画像×縦×横×RGBAです。呈示では元のMATファイルを読みません。通常のPNG等の画像ディレクトリも指定できます。詳しくは [画像バンクのガイド](../assets/object-images/README_ja.md) を参照してください。
 
 別のPCで旧データから再変換する場合は次を一度実行します。入力は読み取り専用で、色・alphaを全データ照合します。
 
@@ -151,7 +153,7 @@ v0.2.2以前の呈示を再現する場合は `spatial_convention: "legacy-pytho
 
 `qa.py --live` は短い呈示ウィンドウを順に開きます。画面キャプチャは検証専用で、通常の取得では使用しません。
 
-元版のBSDライセンスを保持しています。利用・引用は [LICENSE.txt](../LICENSE.txt) と [NOTICE.md](../NOTICE.md) を参照してください。
+元版のBSDライセンスを保持しています。利用・引用は [LICENSE.txt](../LICENSE.txt) と [NOTICE.md（英語）](../NOTICE.md) を参照してください。
 
 ## 結果の保存場所
 
@@ -173,3 +175,5 @@ v0.2.2以前の呈示を再現する場合は `spatial_convention: "legacy-pytho
 `preview --all-positions` で全位置とmanifest、`export --prt FILE` で予定／実flipに基づくPRT、`export-olts --output DIR` で原版6色表を出力できます。刺激呈示にはハードウェアOpenGLが必要です。リモートデスクトップでは利用できない場合があるため、実験にはGPUが利用できるローカルデスクトップを使用してください。
 
 本改訂はOpenAIの生成AI（Codex等）の支援を受け、作者・責任者である番浩志が機能継承の確認と動作チェックを行いながら進めています。ソフトウェアと公開版の責任は作者にあります。
+
+[プロジェクトの日本語README](../README_ja.md)

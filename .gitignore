@@ -8,6 +8,7 @@ __pycache__/
 /subjects/*
 !/subjects/_DEFAULT_/
 !/subjects/README.md
+!/subjects/README_ja.md
 build/
 dist/
 /docs/qa/

@@ -1,9 +1,11 @@
 # PyRetinotopy
 
+[English](README.md) | [Japanese](README_ja.md)
+
 <div align="right">
 Original Retinotopy created: "2013-11-25 Hiroshi Ban"<br>
 Python/PsychoPy adaptation: "2026-11-06"<br>
-Last Update: "2026-11-10"
+Last Update: "2026-11-13"
 </div>
 
 <br>
@@ -20,11 +22,18 @@ Last Update: "2026-11-10"
 
 Hiroshi Ban, author and responsible investigator of PyRetinotopy, reviews the transfer of functionality from the original MATLAB/PTB3 Retinotopy and performs operational checks throughout development. He is responsible for the software and its release.
 
-The current version is **0.4.0**. The aim is to retain the original PTB3 experiment-facing functionality while replacing MATLAB/Psychtoolbox with Python/PsychoPy. Different implementation procedures are used where they improve timing, reproducibility or data preservation. [The feature correspondence](docs/PTB3_FEATURES.ja.md) and [all 96 referenced settings](docs/PTB3_PARAMETER_MAP.ja.md) document the correspondence and explicit limits. Initial positions and scan order now follow the original PTB3 source formulas; see [spatial compatibility](docs/PTB3_PARITY.ja.md). Core stimuli and binocular presentation paths have been implemented. Object-image presentation uses native NumPy data and movies prepared before acquisition. Before collecting experimental data, check stimulus timing, eye assignment, and calibration on the intended scanner/display hardware.
+The current version is **0.4.0**. The aim is to retain the original PTB3 experiment-facing functionality while replacing MATLAB/Psychtoolbox with Python/PsychoPy. Different implementation procedures are used where they improve timing, reproducibility or data preservation. [The feature correspondence](docs/PTB3_FEATURES.md) and [all 96 referenced settings](docs/PTB3_PARAMETER_MAP.md) document the correspondence and explicit limits. Initial positions and scan order now follow the original PTB3 source formulas; see [spatial compatibility](docs/PTB3_PARITY.md). Core stimuli and binocular presentation paths have been implemented. Object-image presentation uses native NumPy data and movies prepared before acquisition. Before collecting experimental data, check stimulus timing, eye assignment, and calibration on the intended scanner/display hardware.
 
-[日本語の実行手順 / Japanese usage guide](docs/USAGE.ja.md)
+Documentation:
 
-The project and experiment guides introduce PyRetinotopy, its author and purpose, setup, binocular presentation, image preparation, acquisition, timing checks, citation, and acknowledgments: [日本語PDF](docs/PyRetinotopy_Experiment_Guide_ja.pdf) / [English PDF](docs/PyRetinotopy_Experiment_Guide_en.pdf).
+- [Usage guide](docs/USAGE.md)
+- [Participant settings](subjects/README.md)
+- [Presentation timing and block boundaries](docs/PRESENTATION_TIMING.md)
+- [PTB3 feature correspondence](docs/PTB3_FEATURES.md)
+- [Original-to-Python setting mapping](docs/PTB3_PARAMETER_MAP.md)
+- [Starting positions and compatibility](docs/PTB3_PARITY.md)
+
+The project and experiment guides introduce PyRetinotopy, its author and purpose, setup, binocular presentation, image preparation, acquisition, timing checks, citation, and acknowledgments: [Japanese PDF](docs/PyRetinotopy_Experiment_Guide_ja.pdf) / [English PDF](docs/PyRetinotopy_Experiment_Guide_en.pdf).
 
 ***
 
@@ -71,7 +80,7 @@ The main advantages of this package are
   ***2. As I have been engaging in binocular/stereo vision studies with fMRI/MEG, I often have to present the stimuli with binocular viewing setups using, for instance, stereo-shutter-goggles or polarized glasses on the dual display systems. This PyRetinotopy package retains this emphasis on binocular presentation, with shared stimulus definitions for single-display and binocular configurations. The Python port includes dual-window and quad-buffer stereo presentation paths; validation with the intended hardware is still required.***  
 
 For more details, please read the descriptions below.  
-Also please check the module docstrings in [pyretinotopy](pyretinotopy) and the [PTB3 compatibility notes](docs/PTB3_PARITY.ja.md).
+Also please check the module docstrings in [pyretinotopy](pyretinotopy) and the [PTB3 compatibility notes](docs/PTB3_PARITY.md).
 
 ***Finally, the package is made publicly available in the hope of keeping our research group being transparent and open. Furthermore, the package is made open also for people who want to know our group's research activities, who want to join our group in the near future, and who want to learn how to create visual stimuli for vision science. Please feel free to contact us if you are interested in our research projects.***  
 
@@ -249,7 +258,7 @@ Each acquisition saves `acquisition.json`, `config.json`, `frames.tsv`, `events.
 python -m pyretinotopy export --config subjects/HB/results/261106/ccwf_run-01/config.json --frames subjects/HB/results/261106/ccwf_run-01/frames.tsv --output actual-windows.npz
 ```
 
-For more details, see the module docstrings and the [Japanese usage guide](docs/USAGE.ja.md).
+For more details, see the module docstrings and the [usage guide](docs/USAGE.md).
 
 
 [back to the menu](#Menu)
@@ -372,7 +381,7 @@ python -m pyretinotopy export-olts --output brainvoyager-colors
 
 Multifocal regions follow the original clockwise order, with unique IDs by default (`multifocal_indexing: "corrected"`). The original zero-phase MATLAB generator overlaps some region IDs; use `"ptb3"` for that field to reproduce its overlap (requires phase 0 and width 360). This compatibility option is separate from the angle convention.
 
-Use `spatial_convention: "legacy-python"` to replay the v0.2.x geometry. Saved acquisition `config.json` files with a sibling `summary.json` recording version <=0.2.2 are recognized automatically if no convention is explicitly saved. Other settings files adopt the new defaults. Pixel boundaries, stochastic carriers and task sequences are not asserted to be identical MATLAB framebuffers. See the [spatial compatibility notes](docs/PTB3_PARITY.ja.md).
+Use `spatial_convention: "legacy-python"` to replay the v0.2.x geometry. Saved acquisition `config.json` files with a sibling `summary.json` recording version <=0.2.2 are recognized automatically if no convention is explicitly saved. Other settings files adopt the new defaults. Pixel boundaries, stochastic carriers and task sequences are not asserted to be identical MATLAB framebuffers. See the [spatial compatibility notes](docs/PTB3_PARITY.md).
 
 
 [back to the menu](#Menu)

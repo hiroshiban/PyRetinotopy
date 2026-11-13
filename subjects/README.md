@@ -1,15 +1,17 @@
-# 被験者設定と既定値の継承
+# Participant settings and default inheritance
 
-原版の `Presentation/subjects/_DEFAULT_` に対応する場所は、このPython版の **`subjects/_DEFAULT_/`** です。MATLABファイルの代わりにJSONを使用します。
+[English](README.md) | [Japanese](README_ja.md)
+
+The Python equivalent of the original `Presentation/subjects/_DEFAULT_` directory is **`subjects/_DEFAULT_/`**. Configuration files use JSON instead of MATLAB.
 
 ```text
 subjects/
   _DEFAULT_/
-    common.json                 # seed、run、課題の共通既定値
-    retinotopy_display.json      # display設定
-    c_pol.json                  # 楔形
-    c_ecc.json                  # 環状刺激
-    c_dual.json                 # 楔形＋環状
+    common.json                 # Shared defaults for seed, run, and task
+    retinotopy_display.json      # Display settings
+    c_pol.json                  # Wedge
+    c_ecc.json                  # Annulus
+    c_dual.json                 # Combined wedge and annulus
     c_bar.json
     c_multifocal.json
     c_meridian.json
@@ -17,15 +19,15 @@ subjects/
     c_hrf.json
     c_localizer.json
   HB/
-    common.json                 # 被験者共通の差分（任意）
-    retinotopy_display.json      # 被験者の表示設定の差分（任意）
-    c_pol.json                  # 被験者の楔形設定の差分（任意）
-    ccwf.json                   # このモードだけの差分（任意）
+    common.json                 # Optional participant-wide overrides
+    retinotopy_display.json      # Optional participant display overrides
+    c_pol.json                  # Optional participant wedge overrides
+    ccwf.json                   # Optional overrides for this mode only
 ```
 
-## 作成・確認・実行
+## Create, validate, and run
 
-プロジェクト直下で、PsychoPyのPythonを使います。
+Run these commands from the project root using PsychoPy's Python:
 
 ```powershell
 & 'C:\Program Files\PsychoPy\python.exe' -m pyretinotopy init-subject HB --mode ccwf
@@ -33,19 +35,19 @@ subjects/
 & 'C:\Program Files\PsychoPy\python.exe' -m pyretinotopy run --subject HB --mode ccwf
 ```
 
-`init-subject` は空の `HB/common.json` と、run番号だけを持つ `HB/ccwf.json` を作成します。既存の設定ファイルは上書きしません。結果だけが存在する被験者フォルダにも設定を追加でき、既存common.jsonは保持します。被験者フォルダや個別ファイルが存在しなくても、`--subject HB` は既定値で動作します。読み込んだファイルは `validate` の `configuration_sources` に表示されます。
+`init-subject` creates an empty `HB/common.json` and an `HB/ccwf.json` containing only the run number. It does not overwrite existing configuration files. It can add settings to a participant directory that already contains results, preserving an existing `common.json`. `--subject HB` also works with defaults when the participant directory or individual files do not yet exist. The `validate` output lists loaded files in `configuration_sources`.
 
-## 読込み順序
+## Loading order
 
-以下の順に、**指定された項目だけを上書き**します。
+Settings are merged in this order, with **only explicitly specified values overriding earlier values**:
 
-1. Python内蔵の刺激ファミリー別既定値。
-2. `_DEFAULT_/common.json` → `retinotopy_display.json` → 対応する `c_*.json` → `<mode>.json`（あれば）。
-3. `HB/common.json` → `retinotopy_display.json` → 対応する `c_*.json` → `<mode>.json`（あれば）。
+1. Built-in Python defaults for the stimulus family.
+2. `_DEFAULT_/common.json`, `retinotopy_display.json`, the matching `c_*.json`, then `<mode>.json`, if present.
+3. `HB/common.json`, `retinotopy_display.json`, the matching `c_*.json`, then `<mode>.json`, if present.
 
-被験者側の値は、既定ファミリーファイルの値より優先します。同じ被験者内では後のファイルが優先します。辞書は項目ごとに重ね、リストは全体を置き換えます。省略したファイル・項目は既定値を使いますが、存在するファイルの構文エラーや未知の項目名はエラーとして通知します。
+Participant values take precedence over default family values. Within a participant's settings, later files take precedence. Dictionaries merge by key; lists are replaced as a whole. Missing files and fields retain defaults, while syntax errors or unknown fields in existing files are reported as errors.
 
-たとえば `HB/retinotopy_display.json` には、その被験者の位置補正だけを記載できます。
+For example, `HB/retinotopy_display.json` can contain only that participant's eye-position corrections:
 
 ```json
 {
@@ -56,7 +58,7 @@ subjects/
 }
 ```
 
-`HB/c_pol.json` に下記を書くと、`ccw` / `cw` の全キャリアと課題に共通して適用されます。
+The following `HB/c_pol.json` applies to all carriers and tasks for both `ccw` and `cw`:
 
 ```json
 {
@@ -65,13 +67,13 @@ subjects/
 }
 ```
 
-`HB/ccwi.json` は物体画像の楔形だけに適用する設定です。`mode` や `subject` をJSONにも書く場合は、コマンドの指定と一致させてください。
+`HB/ccwi.json` applies only to the object-image wedge mode. If a JSON file also specifies `mode` or `subject`, it must agree with the command-line selection.
 
-画像・キャッシュの相対パスは、**その値を定義したJSONの場所**から解決します。被験者側で別の値を指定しなければ、既定ファイルのパスは被験者フォルダを基準に再解釈しません。
+Relative image and cache paths are resolved from **the JSON file that defines the value**. A path inherited from a default file is not reinterpreted relative to the participant directory unless the participant explicitly supplies a replacement value.
 
-## ファミリーの対応
+## Family files
 
-| ファイル | 基本モード |
+| File | Basic modes |
 |---|---|
 | `c_pol.json` | ccw, cw |
 | `c_ecc.json` | exp, cont |
@@ -83,9 +85,9 @@ subjects/
 | `c_hrf.json` | hrf |
 | `c_localizer.json` | localizer |
 
-配布の `retinotopy_display.json` は全画面・実機校正済みの設定ではありません。撮像前に解像度・物理幅・距離・表示方式・refresh・開始信号を装置へ合わせてください。
+The supplied `retinotopy_display.json` is not a calibrated full-screen acquisition configuration. Before scanning, set resolution, physical screen width, viewing distance, display mode, refresh rate, and start signal for the intended apparatus.
 
-## 確定設定、画像準備、セッション
+## Resolved settings, image preparation, and sessions
 
 ```powershell
 python -m pyretinotopy validate --subject HB --mode ccwf --save-config resolved-HB-ccwf.json
@@ -93,13 +95,13 @@ python -m pyretinotopy prepare-objects --subject HB --mode ccwi
 python -m pyretinotopy run --subject HB --mode ccwi
 ```
 
-`--save-config` は全項目を展開したJSONを保存します。通常の取得でも `subjects/ID/results/YYMMDD/モード_run番号/config.json` に展開済みの設定を保存し、`summary.json` に設定元の一覧を残します。既定ファイルを後から編集しても、`--config 保存済みのconfig.json` による再実行の条件は変わりません。
+`--save-config` saves a fully resolved JSON configuration. Each acquisition also saves the resolved settings in `subjects/ID/results/YYMMDD/MODE_run-NN/config.json` and the source-file list in `summary.json`. Editing the defaults later does not alter the conditions replayed with `--config path/to/saved/config.json`.
 
-**`--config FILE` は独立した明示設定**です。この方法では `_DEFAULT_` や被験者の別ファイルを探索せず、JSONで省略された項目にはPython内蔵の既定値だけを使います。継承を使う実行は `--subject ID --mode MODE`、保存済み条件の再実行は `--config FILE` と区別します。両オプションの同時指定は拒否します。
+**`--config FILE` is an explicit standalone configuration.** It does not search `_DEFAULT_` or other participant files; omitted fields use only built-in Python defaults. Use `--subject ID --mode MODE` for inheritance and `--config FILE` for replaying saved conditions. `--subject` and `--config` are mutually exclusive.
 
-`--subjects-dir PATH` で設定ルートを変更できます。指定先に `_DEFAULT_` がない場合は内蔵値へ戻るので、共有の既定値も引き継ぐ場合は `_DEFAULT_` を配置してください。カスタムルートと被験者設定は自動生成しません。
+`--subjects-dir PATH` changes the configuration root. If the selected root has no `_DEFAULT_`, built-in defaults are used. Copy `_DEFAULT_` there to retain the shared file-based defaults. A custom root and its participant settings are not created automatically when loading settings.
 
-セッションの各runでも `config` の代わりに以下を指定できます。`subjects_dir` は任意で、記載した場合はsession.jsonの場所が基準です。
+Session runs can specify the following instead of `config`. `subjects_dir` is optional; when supplied, it is resolved relative to the session JSON file.
 
 ```json
 {
@@ -110,12 +112,12 @@ python -m pyretinotopy run --subject HB --mode ccwi
 }
 ```
 
-被験者フォルダはGit管理から除外し、配布する `_DEFAULT_` と本書だけを含める設定です。実験室の設定は適切にバックアップしてください。
+Participant directories are excluded from Git. Only the distributed `_DEFAULT_` directory and this guide are included. Back up laboratory settings separately.
 
-## 被験者内にまとめる結果保存
+## Results grouped by participant
 
-既定保存先は `subjects/ID/results/YYMMDD/モード_run番号/` です。例：`subjects/HB/results/261106/ccwf_run-01/`。日付はラン開始処理時の実験PCのローカル日付です。設定を先に作成していない場合でも被験者フォルダを自動作成します。
+The default result directory is `subjects/ID/results/YYMMDD/MODE_run-NN/`, for example `subjects/HB/results/261106/ccwf_run-01/`. The date comes from the experiment computer's local date when the acquisition is initialized. The participant directory is created automatically even if no settings have been created in advance.
 
-`--subjects-dir` を使う継承設定では、その設定ルートのIDフォルダ内へ保存します。明示JSONが被験者IDのフォルダ内にあれば、その設定ルートを使います。`examples/smoke.json` 等はプロジェクトの `subjects/demo/` へ保存します。
+Inherited configurations loaded with `--subjects-dir` save results under that root's participant directory. An explicit JSON file inside a participant-ID directory also uses that settings root. Examples such as `examples/smoke.json` save under the project's `subjects/demo/` directory.
 
-保存ファイル名がラン間で衝突しないよう、日付の下に各モード・runのサブフォルダを設けています。同じ日・ID・モード・runを再実行すると、既存フォルダ全体を `_old-01`、`_old-02`…へ退避して新しい試行を保存します。`run --run N` はJSONのrun値に優先します。異なるrun番号は別フォルダです。既定は自動backupで、`--if-exists error` は既存時に取消します。`--output-root ROOT` を明示した場合だけ、従来の `ROOT/sub-ID/モード_run番号/` へ保存します。既存のdataフォルダは変更しません。
+Each mode and run has a separate subdirectory under the date directory. Repeating the same date, ID, mode, and run archives the complete previous directory as `_old-01`, `_old-02`, etc., before saving a new attempt. `run --run N` overrides the JSON run value; different run numbers use separate directories. The default is automatic backup; `--if-exists error` cancels when results already exist. Only an explicit `--output-root ROOT` uses the alternative `ROOT/sub-ID/MODE_run-NN/` layout. Existing `data` directories are not modified.

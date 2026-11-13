@@ -2,7 +2,7 @@
   "project": "PyRetinotopy",
   "language": "ja",
   "version": "0.4.0",
-  "date": "2026-11-10",
+  "date": "2026-11-13",
   "author": "番浩志",
   "chapters": [
     {
@@ -33,7 +33,7 @@
             [
               [
                 "番浩志",
-                "v0.4.0 / 2026-11-10"
+                "v0.4.0 / 2026-11-13"
               ]
             ],
             [
@@ -76,7 +76,7 @@
             [
               [
                 "14基本モード × 5キャリア・課題 = 70モード",
-                "v0.4.0 / 2026-11-10"
+                "v0.4.0 / 2026-11-13"
               ],
               [
                 "単画面・左右分割・上下分割・anaglyph・行列交互・2画面・quad buffer",
@@ -508,7 +508,7 @@
         {
           "kind": "p",
           "args": [
-            "継承は--subjectで利用します。--config FILEは独立したJSON指定で、別の既定ファイルを探索しません。保存済み取得条件はこの方法で再実行できます。詳細はsubjects/README.mdを参照してください。",
+            "継承は--subjectで利用します。--config FILEは独立したJSON指定で、別の既定ファイルを探索しません。保存済み取得条件はこの方法で再実行できます。詳細はsubjects/README_ja.mdを参照してください。",
             "small"
           ]
         },
@@ -990,7 +990,7 @@
         {
           "kind": "p",
           "args": [
-            "色列・RDSは最初の活動呈示から始まり休止で停止します。RDSは対向checker面の視差を段階循環します。全設定の対応、旧Python版の再現、機器依存の未対応はdocs/PTB3_FEATURES.ja.mdとPTB3_PARAMETER_MAP.ja.mdに記録しています。",
+            "色列・RDSは最初の活動呈示から始まり休止で停止します。RDSは対向checker面の視差を段階循環します。全設定の対応、旧Python版の再現、機器依存の未対応はdocs/PTB3_FEATURES.ja.mdとPTB3_PARAMETER_MAP.mdに記録しています。",
             "small"
           ]
         }
@@ -1285,7 +1285,7 @@
         {
           "kind": "p",
           "args": [
-            "README.md：全体説明・研究背景・参考文献。docs/USAGE.ja.md：実行手順。docs/PRESENTATION_TIMING.ja.md：時刻の設計。docs/PTB3_FEATURES.ja.mdとdocs/PTB3_PARAMETER_MAP.ja.md：原版との機能・設定の対応。docs/PTB3_PARITY.ja.md：開始位置・走査順と互換性。"
+            "README_ja.md：全体説明・研究背景・参考文献。docs/USAGE.ja.md：実行手順。docs/PRESENTATION_TIMING.ja.md：時刻の設計。docs/PTB3_FEATURES.ja.mdとdocs/PTB3_PARAMETER_MAP.ja.md：原版との機能・設定の対応。docs/PTB3_PARITY.ja.md：開始位置・走査順と互換性。"
           ]
         },
         {
@@ -1502,5 +1502,6 @@
         }
       ]
     }
-  ]
+  ],
+  "pdf_title": "プロジェクト・実験ガイド"
 }

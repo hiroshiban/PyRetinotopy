@@ -1,5 +1,7 @@
 # PTB3との開始位置・走査順の対応 - v0.3.0
 
+[English](PTB3_PARITY.md) | [日本語](PTB3_PARITY.ja.md)
+
 原版のMATLABファイルは変更していません。`Presentation` と `Generation` の計算式を読み、独立した参照式とPython版の全70モードを照合しました。MATLABを実行した画像の画素比較ではありません。
 
 ## 既定値の開始位置

@@ -1,5 +1,7 @@
 # PyRetinotopy native object-image bank
 
+[English](README.md) | [Japanese](README_ja.md)
+
 The runtime bank contains `images.npy` and `manifest.json`. The array is memory-mapped, uncompressed `uint8`, with shape **7493 × 256 × 256 × 4** (image, y, x, RGBA). All color and alpha values are preserved from the original data. It can be opened directly in Python without MATLAB, SciPy, h5py, or PsychoPy:
 
 ```python
